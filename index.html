@@ -205,9 +205,69 @@
 </head>
 
 <body class="bg-cream font-poppins text-maroon overflow-x-hidden">
-  <audio src="enjeevanringtone-23587.mp3" autoplay>
-  Your browser does not support the audio element.
-</audio>
+  <!-- Audio player -->
+<audio id="bg-audio" src="enjeevanringtone-23587.mp3" autoplay></audio>
+
+<!-- Mute/Unmute Button -->
+<button id="mute-toggle" aria-label="Toggle Mute">
+  <!-- Unmute (sound on) icon SVG -->
+  <svg id="icon-unmute" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M3 10v4h4l5 5V5l-5 5H3zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zm2.5 0c0 3.03-1.67 5.64-4.5 6.32v2.02c4.01-.91 7-4.49 7-8.34s-2.99-7.43-7-8.34v2.02c2.83.68 4.5 3.29 4.5 6.32z"/></svg>
+  <!-- Mute (sound off) icon SVG, hidden initially -->
+  <svg id="icon-mute" width="28" height="28" viewBox="0 0 24 24" fill="white" style="display:none"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zm2.5 0c0 3.03-1.67 5.64-4.5 6.32v2.02c4.01-.91 7-4.49 7-8.34s-2.99-7.43-7-8.34v2.02c2.83.68 4.5 3.29 4.5 6.32zm-13.41 7.59l1.41 1.41L21 4.41 19.59 3 15 7.59V5l-5 5H3v4h4l5 5v-2.59l5.59 5.59z"/></svg>
+</button>
+
+<!-- CSS for positioning and blending button -->
+<style>
+#mute-toggle {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  background: rgba(0,0,0,0.3); /* semi-transparent for blending */
+  border: none;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+#mute-toggle:hover {
+  background: rgba(0,0,0,0.5);
+}
+#mute-toggle svg {
+  display: block;
+}
+</style>
+
+<!-- JavaScript for mute/unmute functionality -->
+<script>
+const audio = document.getElementById('bg-audio');
+const muteToggle = document.getElementById('mute-toggle');
+const iconMute = document.getElementById('icon-mute');
+const iconUnmute = document.getElementById('icon-unmute');
+
+muteToggle.addEventListener('click', () => {
+  audio.muted = !audio.muted;
+  if(audio.muted) {
+    iconMute.style.display = '';
+    iconUnmute.style.display = 'none';
+  } else {
+    iconMute.style.display = 'none';
+    iconUnmute.style.display = '';
+  }
+});
+
+// Optional: Ensure icon shows correct state on load
+window.addEventListener('DOMContentLoaded', () => {
+  if(audio.muted) {
+    iconMute.style.display = '';
+    iconUnmute.style.display = 'none';
+  } else {
+    iconMute.style.display = 'none';
+    iconUnmute.style.display = '';
+  }
+});
+</script>
 
   <!-- Hero Section -->
 
