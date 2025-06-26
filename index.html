@@ -1,454 +1,735 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sravani & Dileep's Wedding</title>
-
-    <!-- SEO & Theme -->
-    <meta name="theme-color" content="#800020">
-    <link rel="canonical" href="https://sreekargpalli.github.io/SravaniWedsDileep/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
-
-    <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="theme-color" content="#800020">
+  <link rel="canonical" href="https://sreekargpalli.github.io/SravaniWedsDileep/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+  <title>Sravani & Dileep's Wedding</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            maroon: '#800020',
+            gold: '#D4AF37',
+            cream: '#FFFDD0',
+            accent: '#5D1E0F',
+            darkmaroon: '#5a0017',
+          },
+          fontFamily: {
+            playfair: ['Playfair Display', 'serif'],
+            poppins: ['Poppins', 'sans-serif'],
+            dancing: ['Dancing Script', 'cursive']
+          },
+          animation: {
+            'float-slow': 'float 8s ease-in-out infinite',
+            'float-medium': 'float 6s ease-in-out infinite 1s',
+            'float-fast': 'float 4s ease-in-out infinite 2s',
+            'twinkle-slow': 'twinkle 4s ease-in-out infinite',
+            'twinkle-medium': 'twinkle 3s ease-in-out infinite 0.5s',
+            'twinkle-fast': 'twinkle 2s ease-in-out infinite 1s',
+            'fade-in': 'fadeIn 1.5s ease-out forwards',
+            'scale-in': 'scaleIn 1s ease-out forwards',
+            'marquee': 'marquee 20s linear infinite',
+            'rotate-slow': 'rotate 20s linear infinite',
+            'rotate-medium': 'rotate 15s linear infinite reverse',
+            'petal-fall': 'petalFall 10s linear infinite',
+            'petal-fall-2': 'petalFall 12s linear infinite 2s',
+            'petal-fall-3': 'petalFall 14s linear infinite 4s',
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     
-    <script>
-        // Custom Tailwind CSS Configuration
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        maroon: '#800020',
-                        gold: '#D4AF37',
-                        cream: '#FFFDD0',
-                        accent: '#5D1E0F',
-                    },
-                    fontFamily: {
-                        playfair: ['Playfair Display', 'serif'],
-                        poppins: ['Poppins', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Base styles and custom animations */
-        body {
-            background-color: #FFFDD0; /* cream */
-            font-family: 'Poppins', sans-serif;
-            color: #800020; /* maroon */
-            overflow-x: hidden;
-        }
-
-        /* Hero Background with Ken Burns Effect */
-        .hero-background {
-            background-image: url('https://images.unsplash.com/photo-1621905310975-399632f05359?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center center;
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            filter: brightness(0.8);
-            animation: kenburns 40s ease-out infinite;
-        }
-
-        @keyframes kenburns {
-            0% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* General element visibility for animations */
-        .gsap-reveal {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(30px);
-        }
-
-        /* Styling for the audio toggle button */
-        #audio-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(40, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        #audio-toggle:hover {
-            background: rgba(40, 0, 0, 0.5);
-            transform: scale(1.1);
-        }
-
-        /* Section transition with SVG Divider */
-        .section-divider {
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(to bottom, #FFFDD0, #fdf5b9);
-        }
-        .section-divider svg {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: auto;
-        }
-
-        /* Ornate frame for RSVP section */
-        .ornate-frame {
-            position: relative;
-            padding: 1rem;
-            background: linear-gradient(145deg, #fefae0, #fffbe2);
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(93, 30, 15, 0.1);
-        }
-        .ornate-frame::before {
-            content: '';
-            position: absolute;
-            inset: 0.5rem;
-            border-radius: 0.75rem;
-            border: 2px solid #D4AF37; /* gold */
-            pointer-events: none;
-        }
-
-        /* Floating Marigold Flower Style */
-        .marigold-float {
-            position: absolute;
-            opacity: 0.7;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-            will-change: transform;
-        }
-
-    </style>
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes petalFall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    .animate-fade {
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+    
+    .animate-scale {
+      animation: scaleIn 1s ease-out forwards;
+    }
+    
+    .floral-bg {
+      background-image: url('https://raw.githubusercontent.com/SreekarGpalli/SravaniWedsDileep/main/transform_aligned.gif');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.09;
+    }
+    
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    .hero-height {
+      height: 100vh;
+    }
+    
+    .text-stroke {
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+      text-stroke: 1px rgba(255, 255, 255, 0.3);
+    }
+    
+    .text-shadow {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    
+    .marquee-content {
+      display: inline-block;
+      padding-left: 100%;
+      white-space: nowrap;
+    }
+    
+    .floating-petal {
+      position: absolute;
+      opacity: 0.8;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .floating-petal svg {
+      width: 30px;
+      height: 30px;
+      fill: #D4AF37;
+      opacity: 0.7;
+    }
+    
+    .floating-petal:nth-child(2n) svg {
+      fill: #800020;
+    }
+    
+    .floating-petal:nth-child(3n) svg {
+      fill: #FFFDD0;
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    }
+    
+    .section-gradient {
+      background: linear-gradient(to bottom, rgba(255, 253, 208, 0.9) 0%, rgba(255, 253, 208, 0.7) 100%);
+    }
+    
+    .ornamental-divider {
+      position: relative;
+      height: 60px;
+      overflow: hidden;
+    }
+    
+    .ornamental-divider svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      fill: #800020;
+      opacity: 0.2;
+    }
+    
+    .floating-mandala {
+      position: absolute;
+      opacity: 0.1;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .floating-mandala svg {
+      width: 300px;
+      height: 300px;
+      fill: #D4AF37;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-height {
+        height: auto;
+        min-height: 100vh;
+      }
+      
+      .mobile-column {
+        flex-direction: column;
+      }
+      
+      .mobile-text-center {
+        text-align: center;
+      }
+      
+      .floating-mandala svg {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  </style>
 </head>
+<body class="bg-cream font-poppins text-maroon overflow-x-hidden">
+  <!-- Audio player -->
+  <audio id="bg-audio" src="enjeevanringtone-23587.mp3" autoplay loop muted></audio>
+  
+  <!-- Mute/Unmute Button -->
+  <button id="mute-toggle" aria-label="Toggle Mute" class="fixed top-6 right-6 bg-maroon/20 backdrop-blur-sm border border-gold/20 rounded-full p-3 z-50 transition-all hover:bg-maroon/30 hover:border-gold/40 shadow-lg">
+    <svg id="icon-unmute" width="24" height="24" viewBox="0 0 24 24" fill="#D4AF37"></svg>
+    <svg id="icon-mute" width="24" height="24" viewBox="0 0 24 24" fill="#D4AF37" style="display:none"></svg>
+  </button>
 
-<body>
-    <!-- Audio player and mute toggle button -->
-    <audio id="bg-audio" loop>
-      <!-- Using a royalty-free track suitable for an Indian wedding theme -->
-      <source src="https://cdn.pixabay.com/audio/2022/03/14/audio_323acd4f24.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <button id="audio-toggle" aria-label="Toggle Audio">
-      <svg id="icon-unmute" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-      <svg id="icon-mute" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-x" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-    </button>
-    
-    <!-- Hero Section -->
-    <section class="min-h-screen relative flex flex-col justify-center items-center text-center text-cream px-4 overflow-hidden">
-        <div class="hero-background"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-maroon/70 via-maroon/40 to-transparent"></div>
-
-        <div class="relative z-10">
-            <h2 class="font-playfair text-xl md:text-2xl tracking-widest mb-4 gsap-reveal">The Sagili & Palli Families</h2>
-            
-            <h1 class="font-playfair text-4xl md:text-6xl lg:text-7xl text-white mb-6 tracking-wider gsap-reveal" data-gsap-delay="0.2">Joyfully Invite You To Celebrate</h1>
-            
-            <div class="text-5xl md:text-8xl lg:text-9xl font-playfair mb-8 relative inline-block gsap-reveal" data-gsap-delay="0.4">
-                <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-gold to-yellow-300">The Wedding Of</span>
-            </div>
-
-            <div class="my-12 gsap-reveal" data-gsap-delay="0.6">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-playfair font-bold text-white mb-4">
-                    Sravani <span class="text-3xl md:text-5xl text-gold mx-2 md:mx-4">&</span> Dileep
-                </h1>
-                <div class="flex justify-center items-center space-x-4">
-                    <div class="h-0.5 w-16 bg-gold/50"></div>
-                    <div class="text-xl md:text-2xl font-light">17<sup>th</sup> August 2025</div>
-                    <div class="h-0.5 w-16 bg-gold/50"></div>
-                </div>
-            </div>
-
-            <div id="countdown-container" class="max-w-2xl mx-auto gsap-reveal" data-gsap-delay="0.8">
-                <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-4 text-white">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg py-3 md:py-4">
-                        <div class="text-3xl md:text-5xl font-bold text-gold" id="days">00</div>
-                        <div class="text-xs md:text-sm uppercase tracking-wider">Days</div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg py-3 md:py-4">
-                        <div class="text-3xl md:text-5xl font-bold text-gold" id="hours">00</div>
-                        <div class="text-xs md:text-sm uppercase tracking-wider">Hours</div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg py-3 md:py-4">
-                        <div class="text-3xl md:text-5xl font-bold text-gold" id="minutes">00</div>
-                        <div class="text-xs md:text-sm uppercase tracking-wider">Minutes</div>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-lg py-3 md:py-4">
-                        <div class="text-3xl md:text-5xl font-bold text-gold" id="seconds">00</div>
-                        <div class="text-xs md:text-sm uppercase tracking-wider">Seconds</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Transition Divider -->
-    <div class="section-divider">
-      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1440 120V0C1200 80 840 120 720 120C600 120 240 80 0 0V120H1440Z" fill="#FFFDD0"></path>
-      </svg>
-    </div>
-
-    <!-- Family Blessings Section -->
-    <section class="py-16 md:py-24 px-4 relative overflow-hidden bg-[#fdf5b9]">
-      <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23800020%22 fill-opacity=%220.1%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-playfair text-maroon mb-4 gsap-reveal">With The Blessings Of</h2>
-                <div class="flex justify-center mt-4 gsap-reveal" data-gsap-delay="0.2">
-                    <div class="h-1 w-24 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-                <!-- Bride's Family -->
-                <div class="text-center w-full md:w-1/3 gsap-reveal" data-gsap-from="left">
-                    <h3 class="text-2xl md:text-3xl font-medium text-gold mb-6 font-playfair">Bride's Side</h3>
-                    <div class="space-y-4">
-                        <div class="font-bold text-xl md:text-2xl">Murali & Sujatha Sagili</div>
-                        <div class="text-md opacity-80">Parents of the Bride</div>
-                    </div>
-                    <div class="mt-6">
-                        <div class="font-bold text-xl md:text-2xl">Dattsai Sagili</div>
-                        <div class="text-md opacity-80">Brother of the Bride</div>
-                    </div>
-                </div>
-
-                <!-- Divider -->
-                <div class="text-5xl text-gold opacity-50 gsap-reveal" data-gsap-delay="0.3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-
-                <!-- Groom's Family -->
-                <div class="text-center w-full md:w-1/3 gsap-reveal" data-gsap-from="right">
-                    <h3 class="text-2xl md:text-3xl font-medium text-gold mb-6 font-playfair">Groom's Side</h3>
-                    <div class="space-y-4">
-                        <div class="font-bold text-xl md:text-2xl">Sekhar Babu & Anitha Palli</div>
-                        <div class="text-md opacity-80">Parents of the Groom</div>
-                    </div>
-                    <div class="mt-6">
-                        <div class="font-bold text-xl md:text-2xl">Divya & Praveen</div>
-                        <div class="text-md opacity-80">Sister & Brother-in-law</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wedding Ceremony Section -->
-    <section id="ceremony" class="py-20 md:py-32 px-4 relative bg-cream overflow-hidden">
-        <!-- Floating Marigold Flowers -->
-        <div class="marigold-float" style="top: 10%; left: 5%; width: 80px;" data-speed="0.8">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="#FFC300"/><circle cx="50" cy="50" r="25" fill="#FF5733"/><circle cx="50" cy="50" r="10" fill="#C70039"/></svg>
-        </div>
-        <div class="marigold-float" style="top: 60%; right: 8%; width: 120px;" data-speed="1.2">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="#FFC300"/><circle cx="50" cy="50" r="25" fill="#FF5733"/><circle cx="50" cy="50" r="10" fill="#C70039"/></svg>
-        </div>
-         <div class="marigold-float" style="bottom: 15%; left: 12%; width: 50px;" data-speed="1.1">
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="#FFC300"/><circle cx="50" cy="50" r="25" fill="#FF5733"/><circle cx="50" cy="50" r="10" fill="#C70039"/></svg>
-        </div>
-
-        <div class="relative z-10 max-w-4xl mx-auto bg-cream/80 backdrop-blur-md rounded-2xl shadow-2xl p-8 md:p-12 border border-gold/20">
-            <div class="text-center mb-10 gsap-reveal">
-                <h2 class="text-3xl md:text-5xl font-bold font-playfair text-maroon mb-4">The Wedding Ceremony</h2>
-                <div class="flex justify-center mt-4">
-                    <div class="h-1 w-24 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
-                </div>
-            </div>
-
-            <div class="space-y-8 mb-12 text-center gsap-reveal" data-gsap-delay="0.2">
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    <div>
-                        <div class="font-semibold text-lg md:text-xl">Sunday, August 17, 2025</div>
-                        <div class="text-lg text-accent">Muhurtham at 9:00 AM</div>
-                    </div>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    <div>
-                        <div class="font-bold text-xl md:text-2xl mb-1 text-accent">Paramount Event Venue</div>
-                        <div class="text-lg">5180 Paramount Pkwy, Morrisville, NC 27560</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center gsap-reveal" data-gsap-delay="0.4">
-                <a href="https://www.google.com/maps/place/5180+Paramount+Pkwy,+Morrisville,+NC+27560" target="_blank" class="px-8 py-3 bg-maroon text-cream hover:bg-accent rounded-full font-semibold transition-all duration-300 inline-flex items-center transform hover:scale-105 shadow-lg hover:shadow-xl">
-                    Get Directions
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp" class="py-16 md:py-24 px-4 bg-[#fdf5b9] overflow-hidden">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold font-playfair text-maroon mb-4 gsap-reveal">Kindly Respond</h2>
-                <p class="text-lg max-w-2xl mx-auto text-accent gsap-reveal" data-gsap-delay="0.2">
-                    Your presence would mean the world to us. Please let us know if you can make it by August 1, 2025.
-                </p>
-            </div>
-            
-            <div class="ornate-frame gsap-reveal" data-gsap-delay="0.4">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScm8aclq-58Fgohb_-ORA3302M_uGvaZ5Fk2H61RfijyQAfjQ/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" class="rounded-lg">Loading…</iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 bg-maroon text-cream/80">
-        <div class="max-w-6xl mx-auto text-center px-4">
-            <div class="mb-4 gsap-reveal">
-                <h3 class="text-4xl font-playfair text-gold">Sravani & Dileep</h3>
-            </div>
-            <div class="tracking-wider text-sm gsap-reveal" data-gsap-delay="0.2">
-                #SravaniWedsDileep <br>
-                Crafted with love for our wedding day | August 17, 2025
-            </div>
-        </div>
-    </footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    // --- Audio Controls ---
+  <!-- JavaScript for mute/unmute functionality -->
+  <script>
     const audio = document.getElementById('bg-audio');
-    const audioToggle = document.getElementById('audio-toggle');
+    const muteToggle = document.getElementById('mute-toggle');
     const iconMute = document.getElementById('icon-mute');
     const iconUnmute = document.getElementById('icon-unmute');
-    let isAudioPlaying = false;
-
-    // A single click on the page is required for audio to play in most browsers.
-    const enableAudio = () => {
-        if (!isAudioPlaying) {
-            audio.play().then(() => {
-                isAudioPlaying = true;
-                audio.muted = false;
-                iconMute.style.display = 'none';
-                iconUnmute.style.display = 'block';
-                document.body.removeEventListener('click', enableAudio);
-            }).catch(error => console.error("Audio play failed:", error));
-        }
-    };
-    document.body.addEventListener('click', enableAudio, { once: true });
     
-    // Toggle mute/unmute
-    audioToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent body click event from firing again
-        if (!isAudioPlaying) {
-             enableAudio();
-             return;
-        }
+    // Set initial path data for icons
+    iconUnmute.innerHTML = '<path d="M3 10v4h4l5 5V5l-5 5H3zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zm2.5 0c0 3.03-1.67 5.64-4.5 6.32v2.02c4.01-.91 7-4.49 7-8.34s-2.99-7.43-7-8.34v2.02c2.83.68 4.5 3.29 4.5 6.32z"/>';
+    iconMute.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zm2.5 0c0 3.03-1.67 5.64-4.5 6.32v2.02c4.01-.91 7-4.49 7-8.34s-2.99-7.43-7-8.34v2.02c2.83.68 4.5 3.29 4.5 6.32zm-13.41 7.59l1.41 1.41L21 4.41 19.59 3 15 7.59V5l-5 5H3v4h4l5 5v-2.59l5.59 5.59z"/>';
 
+    muteToggle.addEventListener('click', () => {
+      // Unmute on first interaction
+      if (audio.muted && audio.paused) {
+        audio.muted = false;
+        audio.play();
+      } else {
         audio.muted = !audio.muted;
-        if (audio.muted) {
-            iconMute.style.display = 'block';
-            iconUnmute.style.display = 'none';
-        } else {
-            iconMute.style.display = 'none';
-            iconUnmute.style.display = 'block';
-        }
+      }
+      if(audio.muted) {
+        iconMute.style.display = '';
+        iconUnmute.style.display = 'none';
+      } else {
+        iconMute.style.display = 'none';
+        iconUnmute.style.display = '';
+      }
     });
 
-    // --- Countdown Timer ---
-    const weddingDate = new Date('August 17, 2025 09:00:00').getTime();
-    const countdownInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
-
-        if (distance < 0) {
-            clearInterval(countdownInterval);
-            document.getElementById('countdown-container').innerHTML = "<div class='text-2xl font-playfair text-gold'>The special day has arrived!</div>";
-            return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById('days').textContent = String(days).padStart(2, '0');
-        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    }, 1000);
-
-    // --- GSAP Animations ---
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Initial hero section load animation
-    gsap.timeline()
-        .from(".gsap-reveal", {
-            delay: 0.5,
-            duration: 1.2,
-            opacity: 0,
-            y: 30,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
-
-    // Scroll-triggered animations for sections
-    const sections = document.querySelectorAll('section, footer');
-    sections.forEach(section => {
-        const revealElements = section.querySelectorAll('.gsap-reveal');
-        
-        gsap.from(revealElements, {
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                end: "bottom 60%",
-                toggleActions: "play none none none",
-            },
-            opacity: 0,
-            y: 40,
-            duration: 1,
-            stagger: (index, element) => {
-                const delay = element.dataset.gsapDelay || 0.15;
-                return parseFloat(delay);
-            },
-            ease: "power3.out",
-            // Custom direction
-            x: (index, element) => {
-                const from = element.dataset.gsapFrom;
-                if (from === 'left') return -50;
-                if (from === 'right') return 50;
-                return 0;
-            }
-        });
+    // Optional: Ensure icon shows correct state on load
+    window.addEventListener('DOMContentLoaded', () => {
+      if(audio.muted) {
+        iconMute.style.display = '';
+        iconUnmute.style.display = 'none';
+      } else {
+        iconMute.style.display = 'none';
+        iconUnmute.style.display = '';
+      }
     });
+  </script>
+
+  <!-- Floating petals -->
+  <div id="petals-container"></div>
+  
+  <!-- Hero Section -->
+  <section class="hero-height relative flex flex-col justify-center items-center overflow-hidden bg-gradient-to-b from-maroon/5 to-gold/5">
+    <!-- Mandala background elements -->
+    <div class="floating-mandala animate-rotate-slow" style="top:10%; left:5%;">
+      <svg viewBox="0 0 100 100">
+        <path d="M50,15a35,35 0 1,0 0,70a35,35 0 1,0 0,-70zm0 5a30,30 0 1,1 0,60a30,30 0 1,1 0,-60zm0 5a25,25 0 1,0 0,50a25,25 0 1,0 0,-50zm0 5a20,20 0 1,1 0,40a20,20 0 1,1 0,-40zm0 5a15,15 0 1,0 0,30a15,15 0 1,0 0,-30z"/>
+      </svg>
+    </div>
+    <div class="floating-mandala animate-rotate-medium" style="bottom:15%; right:10%;">
+      <svg viewBox="0 0 100 100">
+        <path d="M50,10a40,40 0 1,0 0,80a40,40 0 1,0 0,-80zm0 10a30,30 0 1,1 0,60a30,30 0 1,1 0,-60zm0 10a20,20 0 1,0 0,40a20,20 0 1,0 0,-40z"/>
+      </svg>
+    </div>
     
-    // Parallax for floating marigolds
-    gsap.utils.toArray(".marigold-float").forEach(flower => {
-      gsap.to(flower, {
-        y: (i, target) => ScrollTrigger.maxScroll(window) * -0.1 * parseFloat(target.dataset.speed || 1),
-        ease: "none",
-        scrollTrigger: {
-          start: 0,
-          end: "max",
-          scrub: true,
+    <!-- Content -->
+    <div class="relative z-20 text-center px-4 py-8 animate-fade">
+      <div class="mb-8">
+        <div class="text-xl md:text-2xl tracking-widest mb-4">
+          <h2 class="font-playfair text-maroon">The Sagili Family</h2>
+          <div class="flex justify-center my-2">
+            <div class="w-16 h-1 bg-gold rounded-full"></div>
+          </div>
+        </div>
+        <h1 class="font-playfair text-4xl md:text-6xl lg:text-7xl text-accent mb-6 tracking-wider text-shadow">
+          Invites You To Celebrate
+        </h1>
+        <div class="text-5xl md:text-8xl lg:text-9xl font-bold mb-8 font-playfair text-accent relative inline-block">
+          <span class="text-maroon text-stroke">The Wedding Of</span>
+          <div class="absolute -bottom-3 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+        </div>
+      </div>
+      
+      <div class="mb-12 relative">
+        <div class="absolute -inset-8 bg-maroon/10 rounded-full blur-xl -z-10"></div>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 font-playfair text-maroon">
+          <span class="inline-block animate-float-slow">Sravani</span> 
+          <span class="text-3xl md:text-5xl text-gold mx-2 md:mx-4 animate-scale">&</span> 
+          <span class="inline-block animate-float-medium">Dileep</span>
+        </h1>
+                
+        <div class="flex justify-center items-center">
+          <div class="h-1 w-16 bg-gold mx-2"></div>
+          <div class="text-xl md:text-2xl font-medium">
+            17<sup>th</sup> August 2025
+          </div>
+          <div class="h-1 w-16 bg-gold mx-2"></div>
+        </div>
+      </div>
+      
+      <!-- Countdown timer -->
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-lg md:text-xl mb-6">Counting down to our special day</h3>
+        <div id="countdown" class="grid grid-cols-4 gap-4 mb-12">
+          <div class="bg-gradient-to-b from-maroon to-darkmaroon rounded-lg py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl md:text-4xl font-bold text-gold" id="days">00</div>
+            <div class="text-white/80 text-xs md:text-sm tracking-wider">DAYS</div>
+          </div>
+          <div class="bg-gradient-to-b from-maroon to-darkmaroon rounded-lg py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl md:text-4xl font-bold text-gold" id="hours">00</div>
+            <div class="text-white/80 text-xs md:text-sm tracking-wider">HOURS</div>
+          </div>
+          <div class="bg-gradient-to-b from-maroon to-darkmaroon rounded-lg py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl md:text-4xl font-bold text-gold" id="minutes">00</div>
+            <div class="text-white/80 text-xs md:text-sm tracking-wider">MINUTES</div>
+          </div>
+          <div class="bg-gradient-to-b from-maroon to-darkmaroon rounded-lg py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="text-3xl md:text-4xl font-bold text-gold" id="seconds">00</div>
+            <div class="text-white/80 text-xs md:text-sm tracking-wider">SECONDS</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex justify-center">
+        <a href="#rsvp" class="px-8 py-3 bg-gradient-to-r from-maroon to-accent text-cream hover:from-accent hover:to-maroon rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center">
+          <span>RSVP Now</span>
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+      <svg class="w-8 h-8 text-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </section>
+  
+  <!-- Ornamental divider -->
+  <div class="ornamental-divider bg-cream">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.21,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
+      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+    </svg>
+  </div>
+  
+  <!-- Family Blessings Section -->
+  <section class="relative py-16 md:py-24 px-4 overflow-hidden bg-cream">
+    <div class="absolute inset-0 floral-bg z-0"></div>
+    
+    <!-- Decorative border -->
+    <div class="absolute inset-0 border-t-8 border-b-8 border-maroon/10 pointer-events-none"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto">
+      <div class="text-center mb-16 animate-fade">
+        <h2 class="text-3xl md:text-4xl font-bold font-playfair text-maroon mb-4">
+          With The Blessings Of
+        </h2>
+        <div class="flex justify-center mb-8">
+          <div class="h-1 w-16 bg-gold"></div>
+        </div>
+      </div>
+      
+      <div class="flex flex-wrap mobile-column justify-center gap-16 md:gap-24 mb-20">
+        <!-- Bride's Family -->
+        <div class="animate-fade flex-1 min-w-[300px] max-w-md bg-gradient-to-b from-cream to-cream/80 backdrop-blur-sm rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+          <div class="text-center mb-8">
+            <div class="text-2xl md:text-3xl font-medium text-gold mb-2 font-playfair">Bride's Side</div>
+            <div class="flex justify-center">
+              <i class="fas fa-heart text-maroon mx-2 animate-twinkle-slow"></i>
+              <div class="h-0.5 w-16 bg-gradient-to-r from-transparent via-maroon to-transparent mx-2"></div>
+              <i class="fas fa-heart text-maroon mx-2 animate-twinkle-medium"></i>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <div class="mb-4">
+              <div class="font-bold text-xl font-playfair">Murali Sagili</div>
+              <div class="text-lg text-gold">&</div>
+              <div class="font-bold text-xl font-playfair">Sujatha Sagili</div>
+              <div class="text-sm opacity-80">Parents</div>
+            </div>
+            
+            <div class="mt-8">
+              <div class="font-bold text-xl font-playfair">Dattsai Sagili</div>
+              <div class="text-sm opacity-80">Brother</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Divider -->
+        <div class="flex flex-col justify-center items-center animate-fade">
+          <div class="text-4xl text-maroon opacity-30 mx-4 animate-rotate-slow">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="w-0.5 h-16 bg-gradient-to-b from-transparent via-maroon to-transparent mx-auto my-4"></div>
+          <div class="text-4xl text-maroon opacity-30 animate-rotate-medium">
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+        
+        <!-- Groom's Family -->
+        <div class="animate-fade flex-1 min-w-[300px] max-w-md bg-gradient-to-b from-cream to-cream/80 backdrop-blur-sm rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300">
+          <div class="text-center mb-8">
+            <div class="text-2xl md:text-3xl font-medium text-gold mb-2 font-playfair">Groom's Side</div>
+            <div class="flex justify-center">
+              <i class="fas fa-heart text-maroon mx-2 animate-twinkle-medium"></i>
+              <div class="h-0.5 w-16 bg-gradient-to-r from-transparent via-maroon to-transparent mx-2"></div>
+              <i class="fas fa-heart text-maroon mx-2 animate-twinkle-fast"></i>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <div class="mb-4">
+              <div class="font-bold text-xl font-playfair">Sekhar Babu</div>
+              <div class="text-lg text-gold">&</div>
+              <div class="font-bold text-xl font-playfair">Anitha</div>
+              <div class="text-sm opacity-80">Parents</div>
+            </div>
+            
+            <div class="mt-8">
+              <div class="font-bold text-xl font-playfair">Divya & Praveen</div>
+              <div class="text-sm opacity-80">Sister & Brother-in-law</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Twinkling separator -->
+    <div class="flex justify-center py-6">
+      <div class="flex space-x-8">
+        <div class="text-3xl text-gold animate-twinkle-slow">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="text-3xl text-gold animate-twinkle-medium">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="text-3xl text-gold animate-twinkle-fast">
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Ornamental divider -->
+  <div class="ornamental-divider bg-cream rotate-180">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.21,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
+      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+    </svg>
+  </div>
+  
+  <!-- Wedding Ceremony Section -->
+  <section class="relative py-24 px-4 overflow-hidden bg-gradient-to-b from-maroon/5 to-gold/5">
+    <!-- Decorative border -->
+    <div class="absolute inset-0 border-t-8 border-b-8 border-gold/10 pointer-events-none"></div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto bg-cream/90 backdrop-blur-md rounded-2xl shadow-xl p-8 md:p-12 animate-fade hover:shadow-2xl transition-all duration-500">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold font-playfair text-maroon mb-4">
+          The Wedding Ceremony
+        </h2>
+        <div class="flex justify-center mb-8">
+          <div class="h-1 w-16 bg-gold"></div>
+        </div>
+      </div>
+      
+      <div class="space-y-6 mb-12 mobile-text-center">
+        <div class="bg-gradient-to-r from-maroon/5 to-gold/5 p-6 rounded-xl">
+          <div class="flex items-center justify-center">
+            <div class="bg-maroon text-gold p-3 rounded-full mr-4 shadow-md">
+              <i class="fas fa-calendar-day text-xl"></i>
+            </div>
+            <div>
+              <div class="font-semibold text-lg">Sunday, August 17, 2025</div>
+              <div class="text-lg text-maroon/80">at 9:00 AM</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-gold/5 to-maroon/5 p-6 rounded-xl">
+          <div class="flex items-center justify-center">
+            <div class="bg-gold text-maroon p-3 rounded-full mr-4 shadow-md">
+              <i class="fas fa-location-dot text-xl"></i>
+            </div>
+            <div>
+              <div class="font-bold text-xl mb-1">Paramount Event Venue</div>
+              <div class="text-maroon/80">5180 Paramount Pkwy</div>
+              <div class="text-maroon/80">Morrisville, NC 27560</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <a href="https://www.google.com/maps/place/5180+Paramount+Pkwy,+Morrisville,+NC+27560"
+            target="_blank"
+            class="px-8 py-3 bg-gradient-to-r from-maroon to-accent text-cream hover:from-accent hover:to-maroon rounded-full font-semibold transition-all duration-300 inline-flex items-center transform hover:scale-105 shadow-lg hover:shadow-xl">
+          <i class="fas fa-map-location-dot mr-2"></i> View on Google Maps
+        </a>
+      </div>
+      
+      <!-- Decorative elements -->
+      <div class="absolute -top-6 -left-6 text-gold text-4xl opacity-50 animate-twinkle-slow">
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="absolute -bottom-6 -right-6 text-gold text-4xl opacity-50 animate-twinkle-medium">
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
+    
+    <!-- Floating elements -->
+    <div class="absolute top-16 left-8 text-gold text-4xl animate-float-slow">
+      <i class="fas fa-flower-tulip"></i>
+    </div>
+    <div class="absolute bottom-16 right-8 text-gold text-4xl animate-float-medium">
+      <i class="fas fa-flower-tulip"></i>
+    </div>
+  </section>
+  
+  <!-- Ornamental divider -->
+  <div class="ornamental-divider bg-cream">
+    <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.21,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
+      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+    </svg>
+  </div>
+  
+  <!-- RSVP Section -->
+  <section id="rsvp" class="py-16 md:py-24 px-4 overflow-hidden bg-cream">
+    <div class="max-w-4xl mx-auto animate-fade">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold font-playfair text-maroon mb-4">
+          Kindly Respond by August 1, 2025
+        </h2>
+        <div class="flex justify-center mb-8">
+          <div class="h-1 w-16 bg-gold"></div>
+        </div>
+        <p class="text-lg max-w-2xl mx-auto">
+          We can't wait to celebrate our special day with you!
+          Please RSVP below to confirm your attendance.
+        </p>
+      </div>
+      
+      <!-- Google Form Embed Placeholder -->
+      <div class="bg-gradient-to-br from-cream/70 to-maroon/5 backdrop-blur-sm rounded-xl shadow-xl overflow-hidden p-4 md:p-6 border border-gold/20">
+        <!-- Embedded Google Form -->
+        <iframe 
+          src="https://docs.google.com/forms/d/e/1FAIpQLScm8aclq-58Fgohb_-ORA3302M_uGvaZ5Fk2H61RfijyQAfjQ/viewform?embedded=true" 
+          width="100%" 
+          height="883" 
+          frameborder="0" 
+          marginheight="0" 
+          marginwidth="0"
+          class="min-h-[500px] md:min-h-[850px] rounded-lg">
+          Loading…
+        </iframe>
+      </div>
+      
+      <div class="flex justify-center mt-12">
+        <div class="flex items-center space-x-4">
+          <div class="text-5xl text-gold animate-twinkle-slow">
+            <i class="fas fa-hands-praying"></i>
+          </div>
+          <div class="text-xl font-playfair text-maroon italic">
+            Looking forward to your presence on our special day
+          </div>
+          <div class="text-5xl text-gold animate-twinkle-medium">
+            <i class="fas fa-hands-praying"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="py-12 bg-gradient-to-b from-maroon to-darkmaroon text-cream relative overflow-hidden">
+    <!-- Decorative border -->
+    <div class="absolute inset-0 border-t-8 border-b-8 border-gold/10 pointer-events-none"></div>
+    
+    <!-- Floating mandala -->
+    <div class="floating-mandala animate-rotate-slow" style="top:20%; left:10%;">
+      <svg viewBox="0 0 100 100">
+        <path d="M50,10a40,40 0 1,0 0,80a40,40 0 1,0 0,-80zm0 10a30,30 0 1,1 0,60a30,30 0 1,1 0,-60zm0 10a20,20 0 1,0 0,40a20,20 0 1,0 0,-40z"/>
+      </svg>
+    </div>
+    
+    <div class="max-w-6xl mx-auto text-center px-4 relative z-10">
+      <div class="flex justify-center space-x-6 mb-6">
+        <div class="text-3xl text-gold animate-twinkle-slow">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="text-3xl text-gold animate-twinkle-medium">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="text-3xl text-gold animate-twinkle-fast">
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+      
+      <div class="mb-6">
+        <h3 class="text-2xl font-playfair mb-2">Sravani & Dileep</h3>
+        <div class="text-sm tracking-wider">
+          August 17, 2025 • Morrisville, NC
+        </div>
+      </div>
+      
+      <div class="tracking-wider text-sm opacity-80">
+        Crafted with love for Sravani & Dileep's Wedding<br>
+        &copy; The Sagili Family - 2025
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Countdown Timer
+    const weddingDate = new Date('August 17, 2025 09:00:00').getTime();
+    
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+      document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+    };
+    
+    // Initial update
+    updateCountdown();
+    
+    // Update every second
+    setInterval(updateCountdown, 1000);
+    
+    // Activate animations when scrolled into view
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade');
         }
       });
+    }, observerOptions);
+    
+    // Observe sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
     });
-});
-</script>
-
+    
+    // Create floating petals
+    const petalsContainer = document.getElementById('petals-container');
+    const petalSVGs = [
+      `<svg viewBox="0 0 24 24"><path d="M12,3c0,0-4,2-4,7s4,8,4,8s4-3,4-8S12,3,12,3z"/></svg>`,
+      `<svg viewBox="0 0 24 24"><path d="M12,3c0,0-7,2-7,10s7,8,7,8s7-1,7-8S12,3,12,3z"/></svg>`,
+      `<svg viewBox="0 0 24 24"><path d="M12,3c0,0-5,2-5,7s5,8,5,8s5-3,5-8S12,3,12,3z"/></svg>`
+    ];
+    
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.className = 'floating-petal';
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.top = -50 + 'px';
+      petal.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      petal.style.animationDelay = (Math.random() * 5) + 's';
+      
+      // Randomly select a petal SVG
+      const randomSVG = petalSVGs[Math.floor(Math.random() * petalSVGs.length)];
+      petal.innerHTML = randomSVG;
+      
+      // Random size
+      const size = Math.random() * 20 + 10;
+      petal.style.width = size + 'px';
+      petal.style.height = size + 'px';
+      
+      // Random rotation
+      petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+      
+      // Random animation
+      const animations = ['animate-petal-fall', 'animate-petal-fall-2', 'animate-petal-fall-3'];
+      petal.classList.add(animations[Math.floor(Math.random() * animations.length)]);
+      
+      petalsContainer.appendChild(petal);
+      
+      // Remove petal after animation completes
+      setTimeout(() => {
+        petal.remove();
+      }, 15000);
+    }
+    
+    // Create initial petals
+    for (let i = 0; i < 15; i++) {
+      setTimeout(createPetal, i * 500);
+    }
+    
+    // Continue creating petals periodically
+    setInterval(() => {
+      createPetal();
+    }, 1000);
+  </script>
 </body>
 </html>
