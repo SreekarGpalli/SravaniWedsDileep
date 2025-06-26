@@ -206,8 +206,7 @@
 
 <body class="bg-cream font-poppins text-maroon overflow-x-hidden">
   <!-- Audio player -->
-<audio id="bg-audio" src="enjeevanringtone-23587.mp3" autoplay></audio>
-
+<audio id="bg-audio" src="enjeevanringtone-23587.mp3" autoplay muted></audio>
 <!-- Mute/Unmute Button -->
 <button id="mute-toggle" aria-label="Toggle Mute">
   <!-- Unmute (sound on) icon SVG -->
@@ -247,7 +246,13 @@ const iconMute = document.getElementById('icon-mute');
 const iconUnmute = document.getElementById('icon-unmute');
 
 muteToggle.addEventListener('click', () => {
-  audio.muted = !audio.muted;
+  // Unmute on first interaction
+  if (audio.muted && audio.paused) {
+    audio.muted = false;
+    audio.play();
+  } else {
+    audio.muted = !audio.muted;
+  }
   if(audio.muted) {
     iconMute.style.display = '';
     iconUnmute.style.display = 'none';
